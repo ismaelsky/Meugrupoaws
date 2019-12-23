@@ -43,35 +43,32 @@ var app = {
 //app.initialize();
 
 function start_System(){
-  /*
-  if (window.cordova.platformId === 'browser') db = window.openDatabase('MyDatabase', '1.0', 'Data', 2*1024*1024);
-  else db = window.sqlitePlugin.openDatabase({name: 'MyDatabase.db', location: 'default'});
-*/
-  db = window.sqlitePlugin.openDatabase({
-    name: 'my.db',
-    location: 'default',
-  });
+
+if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
+else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
   db.transaction(function(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
-    tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
-    tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
+
+    var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
+
+    tx.executeSql(create_banco);
+    //tx.executeSql('INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)', ['Alice', 'Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice']);
   }, function(error) {
     alert('Transaction ERROR: ' + error.message);
   }, function() {
     alert('Populated database OK');
   });
 
-
+  /*
   db.transaction(function(tx) {
-    tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function(tx, rs) {
-      alert('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
+    tx.executeSql('SELECT count(*) AS mycount FROM tbUser', [], function(tx, rs) {
+      alert(rs.rows.item(0).mycount);
     }, function(tx, error) {
       alert('SELECT error: ' + error.message);
     });
-  });
+  });*/
 
-  //window.location.replace("./login.html");
+  window.location.replace("./page/login/index.html");
 }
 
 start_System();
