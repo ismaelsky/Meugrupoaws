@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap:https://fonts.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src-elem *">
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src *; style-src-elem *; connect-src *; img-src *; font-src *; ">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+<title>GC Lider</title>
+<!-- CSS  -->
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+</head>
+
+<body>
+	<!--navbar -->
+	<div class='navbar-fixed'>
+		<nav class="light-blue darken-4" role="navigation">
+			<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DUNAMIS</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a     class='link_presenca' href="#!">Presença</a></li>
+					<li><a class='link_participante' href="#!">Participantes</a></li>
+					<li><a    class='link_relatorio' href="#!">Relatorio</a></li>
+					<li>
+						<div class="divider"></div>
+					</li>
+					<li><a class='link_definicoes' href="#!">Definições do Grupo</a></li>
+					<li><a class="waves-effect" href="#!">Sair</a></li>
+				</ul>
+				<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			</div>
+		</nav>
+	</div>
+	<ul id="nav-mobile" class="sidenav">
+		<li>
+			<div class="user-view">
+				<div class="background">
+					<img src="img/office.png">
+				</div>
+				<!--<a href="#user"><img class="circle" src="img/yuna.jpg"></a>-->
+				<br />
+				<br />
+				<a href="#name"><span class="black-text name">LIDER: Ismael Reis</span></a>
+				<!--<a href="#email"><span class="black-text email">GRUPO: DUNAMIS</span></a>-->
+			</div>
+		</li>
+		<li>
+			<div class="divider"></div>
+		</li>
+		<!--<li><a    class='sidenav-close link_nav link_dashboard' href="#!"><i class="material-icons">dashboard</i>Dashboard</a></li>-->
+		<li><a     class='sidenav-close link_presenca' href="#!"><i class="material-icons">check_box</i>Presença</a></li>
+		<li><a class='sidenav-close link_participante' href="#!"><i class="material-icons">people</i>Participantes</a></li>
+		<li><a    class='sidenav-close link_relatorio' href="#!"><i class="material-icons">equalizer</i>Relatorio</a></li>
+		<li>
+			<div class="divider"></div>
+		</li>
+		<li><a class='sidenav-close link_definicoes' href="#!"><i class="material-icons">build</i>Definições do Grupo</a></li>
+		<li><a class="waves-effect" href="#!"><i class="material-icons">power_settings_new</i>Sair</a></li>
+	</ul>
+	<!--end-navbar -->
+
+	<!--Telas -->
+
+	<div id='t_dashboard' class='outlet'>
+		<div class="row">
+			<div class="col s6 m4 l2 center">
+				<div class=" card light-blue darken-4 link_presenca">
+					<div class=" card-content white-text">
+						<span class="card-title">Presença</span>
+						<i class="material-icons large">check</i>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l2 center t5">
+				<div class="card light-blue darken-4 link_participante">
+					<div class="card-content white-text">
+						<span class="card-title">Membros</span>
+						<i class="material-icons large">account_box</i>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l2 center">
+				<div class="card light-blue darken-4 link_relatorio">
+					<div class="card-content white-text">
+						<span class="card-title">Relatorios</span>
+						<i class="material-icons large">assessment</i>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l2 center">
+				<a href='signup.html'>
+				<div class="card light-blue darken-4 link_relatorio">
+					<div class="card-content white-text">
+						<span class="card-title">Mensagem</span>
+						<i class="material-icons large">speaker_notes</i>
+					</div>
+				</div>
+			</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="t_presenca" class='outlet'>
+		<div class='row'>
+			<div class="input-field col s8">
+				<i class="material-icons prefix">account_circle</i>
+				<input id="txt_visitante" type="text" class="validate">
+				<label for="txt_visitante">Nome do Visitante</label>
+			</div>
+			<div class="input-field col s4">
+				<button id='btn_add_visit' class="waves-effect btn btn_grande white-text light-blue darken-4 "><i class="material-icons">add</i></button>
+			</div>
+			<div class='col s12'>
+				<ul id='list_view_visit' class="collection">
+
+				</ul>
+
+				<ul id='list_view_presenca' class="collection">
+					<li class="collection-item">
+						<span class="title">João</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Matheus</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Maria</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">João</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Matheus</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Maria</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">João</span>
+
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Matheus</span>
+
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Maria</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">João</span>
+
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Matheus</span>
+
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+					<li class="collection-item">
+						<span class="title">Maria</span>
+						<label class="secondary-content">
+							<input type="checkbox" />
+							<span class='acao'>Presente</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="col s12">
+				<input id='datepicker_presenca' type="text" class="datepicker center">
+			</div>
+		</div>
+
+		<button class="waves-effect btn btn_presenca btn-large btn_grande white-text light-blue darken-4 "><i class="material-icons">check</i>Salvar</button>
+		<br /><br />
+
+	</div>
+
+	<div id='t_participante' class='outlet'>
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<ul id="tabs-swipe-demo" class="tabs">
+					<li class="tab col s3"><a class="active" href="#test-swipe-1">Editar</a></li>
+					<li class="tab col s3"><a href="#test-swipe-2">Excluir</a></li>
+				</ul>
+
+				<div id="test-swipe-1" class="col s12">
+
+
+					<ul class="collection">
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">João</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Maria</span>
+							<label class="secondary-content blue-text darken-3">
+								<span><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">João</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Maria</span>
+							<label class="secondary-content blue-text darken-3">
+								<span><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">João</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Maria</span>
+							<label class="secondary-content blue-text darken-3">
+								<span><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">João</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content blue-text darken-3">
+								<span class='modal-trigger' href='#modal_edite'><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+						<li class="collection-item modal-trigger" href='#modal_edite'>
+							<span class="title">Maria</span>
+							<label class="secondary-content blue-text darken-3">
+								<span><i class='tiny material-icons'>edit</i></span>
+							</label>
+						</li>
+					</ul>
+					<button class="waves-effect btn btn_grande collection-item white-text center-align light-blue darken-4 modal-trigger" href='#modal1'><i class="material-icons">add</i>  Novo </button>
+				</div>
+
+				<div id="test-swipe-2" class="col s12">
+
+					<ul class="collection">
+						<li class="collection-item">
+							<span class="title">João</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Maria</span>
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">João</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Maria</span>
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">João</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Maria</span>
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">João</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Matheus</span>
+
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+						<li class="collection-item">
+							<span class="title">Maria</span>
+							<label class="secondary-content red-text darken-3">
+								<input type='checkbox' /><span class='acao'>Excluir</span>
+							</label>
+						</li>
+					</ul>
+					<button class="waves-effect btn btn_grande collection-item white-text center-align light-blue darken-4 "><i class="material-icons">clear</i> Excluir </button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- Modal Structure -->
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<h6>Novo participante</h6>
+				<form class="col s12">
+
+					<div class="input-field inline">
+						<input id="email_inline" type="text" class="validate">
+						<label for="email_inline">Nome</label>
+					</div>
+					<div class="input-field inline">
+						<input id="email_inline" type="text" class="validate">
+						<label for="email_inline">Telefone</label>
+					</div>
+					<div class="input-field inline">
+						<input id="email_inline" type="text" class="validate" placeholder="00/00/0000">
+						<label for="email_inline">Aniversario</label>
+					</div>
+
+					<div class="switch">
+						<label>
+							<input type="checkbox">
+							<span class="lever"></span>
+							Membro da igreja
+						</label>
+					</div>
+					<br />
+					<div class="switch">
+						<label>
+							<input type="checkbox">
+							<span class="lever"></span>
+							Evangelico
+						</label>
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			</div>
+		</div>
+
+		<div id="modal_edite" class="modal">
+			<div class="modal-content">
+				<form class="col s12">
+
+					<div class="input-field inline">
+						<input value="joão" id="email_inline" type="text" class="validate">
+						<label for="email_inline">Nome</label>
+					</div>
+					<div class="input-field inline">
+						<input value="9999-9999" id="email_inline" type="text" class="validate">
+						<label for="email_inline">Telefone</label>
+					</div>
+					<div class="input-field inline">
+						<input id="email_inline" type="text" class="validate" placeholder="00/00/0000">
+						<label for="email_inline">Aniversario</label>
+					</div>
+					<div class="switch">
+						<label>
+							<input type="checkbox">
+							<span class="lever"></span>
+							Membro da igreja
+						</label>
+					</div>
+					<br />
+					<div class="switch">
+						<label>
+							<input type="checkbox">
+							<span class="lever"></span>
+							Evangelico
+						</label>
+					</div>
+
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div id='t_Relatorio' class='outlet'>
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<ul id="tabs-swipe-demo" class="tabs">
+					<li class="tab col s3"><a class="active" href="#test-swipe-dia">Dia</a></li>
+					<li class="tab col s3"><a href="#test-swipe-membro">Membro</a></li>
+				</ul>
+
+				<div id="test-swipe-dia" class="row">
+					<div class="tool_date_rel_dia col s12">
+						<input id='datepicker_relatorio' type="text" class="datepicker center"><i class="material-icons Medium icon_rel_dt icon_dt">date_range</i>
+					</div>
+
+					<table id='tb_relatorio' class="tb_relatorio striped col">
+						<thead>
+							<tr class='light-blue darken-3 white-text'>
+								<th>Nome</th>
+								<th>Presença</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>Mathues</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>João</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>Mathues</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>João</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>Mathues</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>João</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>Mathues</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>João</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>Mathues</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>João</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>Alvin</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> </td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class='align-center center blue-grey-text darken-1'>
+						<i class="material-icons large">date_range</i>
+					</div>
+
+					<div class='fixed_botton'>
+						<table id='' class="striped">
+
+							<tbody>
+								<tr class='light-blue darken-2 white-text'>
+									<td>Presentes</td>
+									<td> 4 </td>
+								</tr>
+								<tr class='light-blue darken-1 white-text'>
+									<td>Faltantes</td>
+									<td> 2 </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div id="test-swipe-membro" class="row">
+					<div class="tool_date_rel_membro input-field col s12">
+						<select class='center white-text'>
+							<option value="" disabled selected>Membro a consultar</option>
+							<option value="1">João</option>
+							<option value="2">Maria</option>
+							<option value="3">Jose</option>
+						</select>
+					</div>
+					<table id='tb_relatorio_membro' class="  striped col">
+						<thead>
+							<tr class='light-blue darken-3 white-text'>
+								<th>Dia</th>
+								<th>Presença</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>01/02/2019</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>12/02/2019</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td>20/02/2019</td>
+								<td> F </td>
+							</tr>
+							<tr>
+								<td>27/02/2019</td>
+								<td> P </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> </td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class='align-center center blue-grey-text darken-1'>
+						<i class="material-icons large">date_range</i>
+					</div>
+
+					<div class='fixed_botton'>
+						<table id='' class="striped">
+
+
+							<tbody>
+								<tr class='light-blue darken-2 white-text'>
+									<td>Presentes</td>
+									<td> 4 </td>
+								</tr>
+								<tr class='light-blue darken-1 white-text'>
+									<td>Faltantes</td>
+									<td> 2 </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id='t_definicoes' class='outlet'>
+		<div class="row">
+			<div class="col s2 m5 l5">.
+			</div>
+			<div class="col s8 m4 l2">
+
+				<img src="img/images.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+
+			</div>
+			<div class="col s2 m12 l12">.
+			</div>
+
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Nome completo</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Nome do grupo</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Endereço</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Bairro</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Cidade</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Telefone</label>
+			</div>
+			<div class="input-field col s12 m6 l3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Igreja </label>
+			</div>
+			<div class=" col s12 m12 l12">
+
+			</div>
+			<div class="center col s12 m12 l12">
+				<a class="waves-effect waves-light btn-large"><i class="material-icons left">check</i>Salvar</a>
+
+			</div>
+
+		</div>
+	</div>
+	<!--end-Telas -->
+
+
+	<!--  Scripts  src="https://code.jquery.com/jquery-2.1.1.min.js -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/ajax.js"></script>
+
+</body>
+
+</html>

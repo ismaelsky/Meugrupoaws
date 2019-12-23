@@ -25,6 +25,7 @@ $(document).ready(function () {
 
 
 
+
 //navegar entre telas
 $(".link_dashboard").click(function() {
   $(".outlet").hide();
