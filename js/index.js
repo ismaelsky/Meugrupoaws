@@ -33,6 +33,36 @@ var app = {
   // Update DOM on a Received Event
   receivedEvent: function(id) {
 
+    if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
+    else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
+
+      db.transaction(function(tx) {
+
+        var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
+
+        tx.executeSql(create_banco);
+        //tx.executeSql('INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)', ['Alice', 'Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice']);
+      }, function(error) {
+        alert('Transaction ERROR: ' + error.message);
+      }, function() {
+        //alert('Populated database OK');
+      });
+
+
+      db.transaction(function(tx) {
+        tx.executeSql('SELECT count(*) AS mycount FROM tbUser', [], function(tx, rs) {
+          var loginuser = rs.rows.item(0).mycount;
+
+          if(loginuser == 0){
+            window.location.replace("./page/login/index.html");
+          }else{
+            alert('dados user');
+          }
+        }, function(tx, error) {
+          alert('SELECT error: ' + error.message);
+        });
+      });
+
 
 
   }
@@ -40,35 +70,4 @@ var app = {
 
 };
 
-//app.initialize();
-
-function start_System(){
-
-if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
-else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
-
-  db.transaction(function(tx) {
-
-    var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
-
-    tx.executeSql(create_banco);
-    //tx.executeSql('INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)', ['Alice', 'Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice','Alice']);
-  }, function(error) {
-    alert('Transaction ERROR: ' + error.message);
-  }, function() {
-    alert('Populated database OK');
-  });
-
-  /*
-  db.transaction(function(tx) {
-    tx.executeSql('SELECT count(*) AS mycount FROM tbUser', [], function(tx, rs) {
-      alert(rs.rows.item(0).mycount);
-    }, function(tx, error) {
-      alert('SELECT error: ' + error.message);
-    });
-  });*/
-
-  window.location.replace("./page/login/index.html");
-}
-
-start_System();
+app.initialize();
