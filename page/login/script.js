@@ -10,56 +10,60 @@ $(document).ready(function () {
       $.each(data, function (index, user) {
         if(user.auth === 'ok'){
 
+          //--------------------------------------------------------------------------
 
-          authUser = user;
+          var app = {
+            // Application Constructor
+            initialize: function() {
+              document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+            },
+
+            // deviceready Event Handler
+            //
+            // Bind any cordova events here. Common events are:
+            // 'pause', 'resume', etc.
+            onDeviceReady: function() {
+              this.receivedEvent('deviceready');
+            },
+
+            // Update DOM on a Received Event
+            receivedEvent: function(id) {
+              alert('2');
+              if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
+              else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
+              alert('3');
+              db.transaction(function(tx) {
+
+                var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
+
+                tx.executeSql(create_banco);
+                tx.executeSql('INSERT INTO tbUser VALUES (idUser,stgNome,stgUserName,stgEmail,stgTelefone,stgPass,intNivel,stgEndereco,Img,stgAfiliacao)', [1,user.stgNome, user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]);
+
+              }, function(error) {
+                alert('Transaction ERROR: ' + error.message);
+              }, function() {
+                alert('Populated database OK');
+              });
+
+
+            }
+
+
+          };
+
+          app.initialize();
+
+          //--------------------------------------------------------------------------
+
 
         }else{
           alert(user.auth);
-        }
-      });
-    },"json");
-  });
-  alert(authUser);
+        }//end-ifOK
+      });//end-each
+    },"json");//end-get
 
-  var app = {
-    // Application Constructor
-    initialize: function() {
-      document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-      this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-
-      if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
-      else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
-      db.transaction(function(tx) {
-
-        var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
-
-        tx.executeSql(create_banco);
-        //tx.executeSql('INSERT INTO tbUser VALUES (idUser,stgNome,stgUserName,stgEmail,stgTelefone,stgPass,intNivel,stgEndereco,Img,stgAfiliacao)', [1,user.stgNome, user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]);
-
-      }, function(error) {
-        alert('Transaction ERROR: ' + error.message);
-      }, function() {
-        alert('Populated database OK');
-      });
+  });//end-click
 
 
-    }
 
-
-  };
-
-  app.initialize();
-
-
-});
+});//end-ready
