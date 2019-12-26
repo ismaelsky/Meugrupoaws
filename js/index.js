@@ -45,7 +45,7 @@ var app = {
       }, function(error) {
         alert('Transaction ERROR: ' + error.message);
       }, function() {
-        //alert('Populated database OK');
+        alert('Populated database OK');
       });
 
 
@@ -54,7 +54,7 @@ var app = {
           var loginuser = rs.rows.item(0).mycount;
 
           if(loginuser == 0){
-            //window.location.replace("./page/login/index.html");
+            window.location.replace("./page/login/index.html");
           }else{
             alert('dados user');
           }

@@ -18,9 +18,7 @@ $(document).ready(function () {
       });//end-each
     },"json");//end-get
 
-  });//end-click
-
-
+  });//end-auth_click
 
 });//end-ready
 
@@ -30,9 +28,6 @@ $('#rec_euth').click(function(){
   $.each(all, function (index, user) {
     alert(user);
   });
-
-
-
 });//end-click
 
 //--------------------------------------------------------------------------
@@ -59,15 +54,11 @@ var app = {
     alert('3');
     db.transaction(function(tx) {
 
-
-
       var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
 
       tx.executeSql(create_banco);
-      
+
       //tx.executeSql('INSERT INTO tbUser VALUES (idUser,stgNome,stgUserName,stgEmail,stgTelefone,stgPass,intNivel,stgEndereco,Img,stgAfiliacao)', [1,user.stgNome, user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]);
-
-
 
     }, function(error) {
       alert('Transaction ERROR: ' + error.message);
@@ -75,9 +66,7 @@ var app = {
       alert('Populated database OK');
     });
 
-
   }
-
 
 };
 
