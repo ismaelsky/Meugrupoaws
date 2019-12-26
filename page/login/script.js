@@ -30,6 +30,9 @@ $('#rec_euth').click(function(){
   $.each(all, function (index, user) {
     alert(user);
   });
+
+
+
 });//end-click
 
 //--------------------------------------------------------------------------
@@ -61,7 +64,8 @@ var app = {
       var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
 
       tx.executeSql(create_banco);
-      tx.executeSql('INSERT INTO tbUser VALUES (idUser,stgNome,stgUserName,stgEmail,stgTelefone,stgPass,intNivel,stgEndereco,Img,stgAfiliacao)', [1,user.stgNome, user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]);
+      
+      //tx.executeSql('INSERT INTO tbUser VALUES (idUser,stgNome,stgUserName,stgEmail,stgTelefone,stgPass,intNivel,stgEndereco,Img,stgAfiliacao)', [1,user.stgNome, user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]);
 
 
 
