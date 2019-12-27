@@ -45,7 +45,7 @@ var app = {
       }, function(error) {
         alert('Transaction ERROR: ' + error.message);
       }, function() {
-        alert('Populated database OK');
+        //alert('Populated database OK');
       });
 
 
@@ -56,7 +56,7 @@ var app = {
           if(loginuser == 0){
             window.location.replace("./page/login/index.html");
           }else{
-            alert('dados user');
+            window.location.replace("./page/home/index.html");
           }
         }, function(tx, error) {
           alert('SELECT error: ' + error.message);
