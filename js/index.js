@@ -56,7 +56,7 @@ var app = {
           if(loginuser == 0){
             window.location.replace("./page/login/index.html");
           }else{
-            window.location.replace("./page/home/index.html");
+            window.location.replace("./page/t_home/index.html");
           }
         }, function(tx, error) {
           alert('SELECT error: ' + error.message);

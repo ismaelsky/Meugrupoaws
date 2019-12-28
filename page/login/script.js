@@ -65,7 +65,7 @@ $('#rec_euth').click(function(){
       }, function() {
         //alert('Populated database OK');
 
-        window.location.replace("../home/index.html");
+        window.location.replace("../t_home/index.html");
       });
 
 

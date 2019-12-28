@@ -68,29 +68,28 @@ processos += " " +
 });*/
 
 
-
 //navegar entre telas
-$(".link_dashboard").click(function() {
-  $(".outlet").hide();
-  $("#t_dashboard").show();
+$(".link_home").click(function() {
+  window.location.assign('../t_home/index.html');
 });
 $(".link_presenca").click(function() {
-  $(".outlet").hide();
-  $("#t_presenca").show();
+  window.location.assign('../t_presenca/index.html');
 });
-$(".link_participante").click(function() {
-  $(".outlet").hide();
-  $("#t_participante").show();
+$(".link_membro").click(function() {
+  window.location.assign('../t_membro/index.html');
 });
 $(".link_relatorio").click(function() {
-  $(".outlet").hide();
-  $("#t_Relatorio").show();
+  window.location.assign('../t_relatorio/index.html');
 });
 $(".link_definicoes").click(function() {
-  $(".outlet").hide();
-  $("#t_definicoes").show();
+  window.location.assign('../t_definicoes/index.html');
 });
-
+$(".link_notificacao").click(function() {
+  window.location.assign('../t_notificacao/index.html');
+});
+$(".link_logout").click(function() {
+  //
+});
 
 
 $("#btn_add_visit").click(function() {
