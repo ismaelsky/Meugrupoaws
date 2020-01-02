@@ -23,27 +23,40 @@ var app = {
     if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
     else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
+
     db.transaction(function(tx) {
+
+      /*
       tx.executeSql('SELECT count(*) AS mycount FROM tbUser', [], function(tx, rs) {
-        var loginuser = rs.rows.item(0).mycount;
+      var loginuser = rs.rows.item(0).mycount;
 
-        if(loginuser == 0){
-          alert(' usuario vazio');
-        }else{
-          alert(rs[2]);
-        }
-      }, function(tx, error) {
-        alert('SELECT error: ' + error.message);
-      });
-    });
+      if(loginuser == 0){
+      window.location.replace("./page/login/index.html");
+    }
+  }, function(tx, error) {
+  alert('SELECT error: ' + error.message);
+});
+*/
+});
 
 
-  }
+db.readTransaction(function(tx) {
+  tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
+    var obj1 = resultSet.rows.item(0);
+    var obj1j = JSON.stringify(obj1);
+    alert('-->: ' + obj1j);
+  }, function(tx, error) {
+    console.log('SELECT error: ' + error.message);
+  });
+});
 
+}
 
 };
 
 app.initialize();
+
+
 /*
 $.getJSON("https://www.sigepsi.com/kanban_beta/php/read.php", { fk_rot_proc: tb_rotina[0][0] },
 function (data) {
@@ -124,11 +137,3 @@ $(".btn_presenca").click(function() {
 
 
 });
-
-
-
-
-
-
-
-//$('#datepicker_relatorio').datepicker('open');
