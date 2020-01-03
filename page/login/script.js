@@ -8,6 +8,7 @@ $('#auth').click(function(){
   var login = $('#last_login').val();
   var pass = $('#last_pass').val();
 
+
   $.get("https://meugrupo-262715.appspot.com/", { func: 'auth', login: login, pass: pass},
   function (data) {
     $.each(data, function (index, user) {
@@ -15,9 +16,15 @@ $('#auth').click(function(){
         $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]} );
 
         $("#label_user").html(user.stgNome);
+        $("#label_user").attr("IdUser", user.idUser);
+
+
+        $("#label_user").data("teste", user.stgNome);//teste
+
 
         $("#IndexLogin").hide();
         $("#NextLogin").show();
+
 
       }else{
          M.toast({html: user.auth})
