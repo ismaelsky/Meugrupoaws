@@ -43,8 +43,12 @@ var app = {
 db.readTransaction(function(tx) {
   tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
     var obj1 = resultSet.rows.item(0);
-    var obj1j = JSON.stringify(obj1);
-    alert('-->: ' + obj1j);
+    var objj = JSON.stringify(obj1);
+
+    $.each(obj1, function (index, va) {
+      console.log(va);
+    });
+
   }, function(tx, error) {
     console.log('SELECT error: ' + error.message);
   });
