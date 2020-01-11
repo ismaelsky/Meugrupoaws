@@ -5,9 +5,8 @@ $(document).ready(function () {
 
 $('#auth').click(function(){
   //alert('1');
-  var login = $('#last_login').val();
-  var pass = $('#last_pass').val();
-
+  var login = $('#l_login').val();
+  var pass = $('#l_pass').val();
 
   $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'auth', login: login, pass: pass},
   function (data) {
@@ -16,30 +15,48 @@ $('#auth').click(function(){
         $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]} );
 
         $("#label_user").html(user.stgNome);
-        $("#label_user").attr("IdUser", user.idUser);
 
+        $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'view_grupo', iduser: user.idUser},
+        function (data) {
 
-        $("#label_user").data("teste", user.stgNome);//teste
+          $.each(data, function (index, tbgrupo) {
+            var grup =+ "<a id='rec_euth' class='waves-effect white light-blue-text btn-large'><i class='material-icons left'>check</i>"+tbgrupo.stgNome+"</a><br /><br />";
+            console.log(grup);
+          });//end-each
+
+          //$("#view_grupo").html(grup);
+        },"json");//end-get
 
 
         $("#IndexLogin").hide();
         $("#NextLogin").show();
 
-
       }else{
-         M.toast({html: user.auth})
-        //alert(user.auth);
+        M.toast({html: user.auth})
       }//end-ifOK
     });//end-each
   },"json");//end-get
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });//end-auth_click
 
-
-$('#rec_euth').click(function(){
+$('.rec_auth').click(function(){
   var auth = $( "body" ).data('auth');
-
-
   //alert(all[1]);
   var app = {
     // Application Constructor
