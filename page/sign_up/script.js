@@ -1,30 +1,25 @@
 $(document).ready(function () {
 
-  $('#a').click(function(){
+  $('.btn_cadastrar').click(function(){
 
+    var fname = $('#last_name').val();
+    var fuser = $('#last_usuario').val();
+    var fpass = $('#last_pass').val();
+    var femail = $('#last_email').val();
+    var frua = $('#last_end').val();
+    var fbai = $('#last_bair').val();
+    var fcid = $('#last_cid').val();
+    var ftel = $('#last_tel').val();
+    var fass = $('#last_assoc').val();
 
- /*
-    $.post("https://meugrupo-262715.appspot.com/", { func: 'auth', login: login, pass: pass},
+    var fend = frua + "," +fbai+ "," + fcid;
+
+    $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'sign_up', name: fname,user: fuser,pass: fpass,email: femail,end: fend,tel: ftel,ass: fass },
     function (data) {
-      $.each(data, function (index, tb_processo) {
-
-        processos += " " +
-        "<div class='cell-md-3 proc'>" +
-        "<div class='window wd-proc'>" +
-        "<div class='window-caption'>" +
-        "<span class='title'>" + tb_processo.stgnome + "</span>" +
-        "<div class='buttons'>" +
-        "<span id='button_show_novo_card' class='icon mif-add'></span>" +
-        "</div>" +
-        "</div>" +
-        "<div id='processo_id" + tb_processo.id_processo + "' class='window-content p-2'>" +
-
-        "</div>" +
-        "</div>" +
-        "</div >";
-
+      $.each(data, function (index, showresult) {
+        console.log(showresult);
       });
-    },"json");*/
+    },"json");
   });
 
 });
