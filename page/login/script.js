@@ -1,9 +1,57 @@
 $(document).ready(function () {
-
+  $('.modal').modal();
 
 });//end-ready
 
 $('#auth').click(function(){
+
+  function userbd(){
+    var auth = $( "body" ).data('auth');
+    //alert(all[1]);
+    var app = {
+      // Application Constructor
+      initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+      },
+
+      // deviceready Event Handler
+      //
+      // Bind any cordova events here. Common events are:
+      // 'pause', 'resume', etc.
+      onDeviceReady: function() {
+        this.receivedEvent('deviceready');
+      },
+
+      // Update DOM on a Received Event
+      receivedEvent: function(id) {
+
+        if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
+        else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
+
+        db.transaction(function(tx) {
+
+          /*var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
+          tx.executeSql(create_banco);*/
+
+          tx.executeSql("INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)", [auth[0],auth[1],auth[2],auth[3],auth[4],auth[5],auth[6],auth[7],auth[8],auth[9],auth[10]]);
+        }, function(error) {
+          alert('Transaction ERROR: ' + error.message);
+        }, function() {
+          //alert('Populated database OK');
+
+          window.location.replace("../t_home/index.html");
+        });
+
+
+      }
+
+
+    };
+
+    app.initialize();
+
+  };
+
   //alert('1');
   var login = $('#l_login').val();
   var pass = $('#l_pass').val();
@@ -14,22 +62,7 @@ $('#auth').click(function(){
       if(user.auth === 'ok'){
         $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]} );
 
-        $("#label_user").html(user.stgNome);
-
-        $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'view_grupo', iduser: user.idUser},
-        function (data) {
-
-          $.each(data, function (index, tbgrupo) {
-            var grup =+ "<a id='rec_euth' class='waves-effect white light-blue-text btn-large'><i class='material-icons left'>check</i>"+tbgrupo.stgNome+"</a><br /><br />";
-            console.log(grup);
-          });//end-each
-
-          //$("#view_grupo").html(grup);
-        },"json");//end-get
-
-
-        $("#IndexLogin").hide();
-        $("#NextLogin").show();
+        userbd();
 
       }else{
         M.toast({html: user.auth})
@@ -37,70 +70,8 @@ $('#auth').click(function(){
     });//end-each
   },"json");//end-get
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });//end-auth_click
 
-$('.rec_auth').click(function(){
-  var auth = $( "body" ).data('auth');
-  //alert(all[1]);
-  var app = {
-    // Application Constructor
-    initialize: function() {
-      document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-      this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-
-      if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
-      else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
-
-      db.transaction(function(tx) {
-
-        /*var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
-        tx.executeSql(create_banco);*/
-
-        tx.executeSql("INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)", [auth[0],auth[1],auth[2],auth[3],auth[4],auth[5],auth[6],auth[7],auth[8],auth[9],auth[10]]);
-      }, function(error) {
-        alert('Transaction ERROR: ' + error.message);
-      }, function() {
-        //alert('Populated database OK');
-
-        window.location.replace("../t_home/index.html");
-      });
-
-
-    }
-
-
-  };
-
-  app.initialize();
-
-});//end-click
 
 //--------------------------------------------------------------------------
 

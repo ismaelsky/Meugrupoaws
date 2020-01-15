@@ -46,7 +46,7 @@
 			<div class="center col s12 m12 l12">
 				<br />
 				<br />
-				<a id='auth' class="waves-effect waves-light btn-large"><i class="material-icons left">check</i>Entrar</a><br /><br />
+				<button id='auth' class="waves-effect waves-light btn-large"><i class="material-icons left">check</i>Entrar</button><br /><br />
 				<a href='../sign_up/index.html' class="white blue-text">Cadastre-se</a>
 
 			</div>
@@ -71,7 +71,28 @@
 				<div id='ViewGrupoUser'>
 				</div>
 
-				<a id='' class="waves-effect white light-blue-text btn-large rec_auth"><i class="material-icons left">add</i> Criar Grupo </a><br /><br />
+				<a href="#modalcriargroup" class="modal-trigger btn-large waves-effect white light-blue-text criar_group"><i class="material-icons left">group_add</i> Novo Grupo </a><br /><br />
+
+				<!-- Modal Structure -->
+				<div id="modalcriargroup" class="modal">
+					<div class="modal-content">
+						<h4>Novo Grupo</h4>
+
+						<div class="row">
+							<div class="input-field col s12 m6 l3 ">
+								<i class="material-icons prefix">mode_edit</i>
+								<textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+								<label for="icon_prefix2">Nome do Gurpo</label>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Concluir</a>
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+					</div>
+				</div>
 
 			</div>
 
