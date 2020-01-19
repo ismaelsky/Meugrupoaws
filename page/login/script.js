@@ -1,8 +1,3 @@
-$(document).ready(function () {
-  $('.modal').modal();
-
-});//end-ready
-
 $('#auth').click(function(){
 
   $('#GifLogin').fadeIn("1000");

@@ -1,12 +1,9 @@
 $(document).ready(function () {
   console.log(1);
   $('.sidenav').sidenav();
-
   $.get( "../sidenav/index.html", function( data ) {
     $( ".ajaxsidenav" ).html( data );
   })
-
-
 
   var app = {
     // Application Constructor
@@ -45,11 +42,13 @@ $(document).ready(function () {
 
           $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'view_grupo', iduser: idUserGrupo},
           function (data) {
-            console.log(4);
+
+            console.log(4);/*
             $.each(data, function (index, groupUser) {
               console.log(groupUser);
 
             });//end-each
+            */
           },"json");//end-get
 
 
