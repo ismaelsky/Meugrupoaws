@@ -1,68 +1,74 @@
 $(document).ready(function () {
+  console.log(1);
   $('.sidenav').sidenav();
 
   $.get( "../sidenav/index.html", function( data ) {
     $( ".ajaxsidenav" ).html( data );
   })
 
-});
-
-var app = {
-  // Application Constructor
-  initialize: function() {
-    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-  },
-
-  // deviceready Event Handler
-  //
-  // Bind any cordova events here. Common events are:
-  // 'pause', 'resume', etc.
-  onDeviceReady: function() {
-    this.receivedEvent('deviceready');
-  },
-
-  // Update DOM on a Received Event
-  receivedEvent: function(id) {
-
-    if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
-    else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
 
-    db.transaction(function(tx) {
+  var app = {
+    // Application Constructor
+    initialize: function() {
+      document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
 
-      /*
-      tx.executeSql('SELECT count(*) AS mycount FROM tbUser', [], function(tx, rs) {
-      var loginuser = rs.rows.item(0).mycount;
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+      this.receivedEvent('deviceready');
+    },
 
-      if(loginuser == 0){
-      window.location.replace("./page/login/index.html");
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+
+      if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
+      else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
+
+      console.log(2);
+
+
+      db.readTransaction(function(tx) {
+        tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
+          var obj1 = resultSet.rows.item(0);
+          var objj = JSON.stringify(obj1);
+
+          var iduser = {};
+          $.each(obj1, function (index, va) {
+            iduser[index] = va;
+          });
+          console.log(3);
+          var idUserGrupo = $("#t_dashboard").attr('grupo',iduser['idUser']);
+
+          $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'view_grupo', iduser: idUserGrupo},
+          function (data) {
+            console.log(4);
+            $.each(data, function (index, groupUser) {
+              console.log(groupUser);
+
+            });//end-each
+          },"json");//end-get
+
+
+        }, function(tx, error) {
+          console.log('SELECT error: ' + error.message);
+        });
+      });
+
     }
-  }, function(tx, error) {
-  alert('SELECT error: ' + error.message);
-});
-*/
-});
+
+  };
+
+  app.initialize();
 
 
-db.readTransaction(function(tx) {
-  tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
-    var obj1 = resultSet.rows.item(0);
-    var objj = JSON.stringify(obj1);
-
-    $.each(obj1, function (index, va) {
-      console.log(va);
-    });
-
-  }, function(tx, error) {
-    console.log('SELECT error: ' + error.message);
-  });
 });
 
-}
 
-};
 
-app.initialize();
 
 
 /*
