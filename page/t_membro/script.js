@@ -1,5 +1,13 @@
 $(document).ready(function () {
+  $('.sidenav').sidenav();
+  $('.modal').modal();
+  $('.tabs').tabs();
+  $('select').formSelect();
 
+
+    $.get( "../sidenav/index.html", function( data ) {
+      $( ".ajaxsidenav" ).html( data );
+    })
 
 });
 

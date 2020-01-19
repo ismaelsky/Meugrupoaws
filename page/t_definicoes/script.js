@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    $.get( "../sidenav/index.html", function( data ) {
+      $( ".ajaxsidenav" ).html( data );
+    })
 
 });
 

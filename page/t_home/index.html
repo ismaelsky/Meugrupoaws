@@ -1,66 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap:https://fonts.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src-elem *">
--->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src *; connect-src *; img-src *; font-src *; ">
-<meta name="format-detection" content="telephone=no">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-<title>GC Lider</title>
-<!-- CSS  -->
-<link href="../../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-<link href="../../css/font.css" type="text/css" rel="stylesheet" media="screen,projection" />
-<link href="../../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline'; connect-src *; img-src *; font-src *; ">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+	<title>App Meu Grupo</title>
+	<!-- CSS  -->
+	<link href="../../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../css/font.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
 <body>
 	<!--navbar -->
-	<div class='navbar-fixed'>
-		<nav class="light-blue darken-4" role="navigation">
-			<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DUNAMIS</a>
-				<ul class="right hide-on-med-and-down">
-					<li><a class='link_grupo' href="#!">Dunamis</a></li>
-					<li>
-						<div class="divider"></div>
-					</li>
-					<li><a class='link_definicoes' href="#!">Definições do Grupo</a></li>
-					<li><a class="waves-effect" href="#!">Sair</a></li>
-				</ul>
-				<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			</div>
-		</nav>
+
+	<div class='ajaxsidenav'>
+
 	</div>
-	<ul id="nav-mobile" class="sidenav">
-		<li>
-			<div class="user-view">
-				<div class="background">
-					<img src="../../img/office.png">
-				</div>
-				<!--<a href="#user"><img class="circle" src="img/yuna.jpg"></a>-->
-				<br />
-				<br />
-				<a href="#name"><span class="black-text name">LIDER: Ismael Reis</span></a>
-				<!--<a href="#email"><span class="black-text email">GRUPO: DUNAMIS</span></a>-->
-			</div>
-		</li>
-		<li>
-			<div class="divider"></div>
-		</li>
-		<!--<li><a    class='sidenav-close link_nav link_dashboard' href="#!"><i class="material-icons">dashboard</i>Dashboard</a></li>-->
-
-		<li><a class='sidenav-close link_grupo' href="#!"><i class="material-icons">people</i>DUNAMIS</a></li>
-
-		<li>
-			<div class="divider"></div>
-		</li>
-		<li><a class='sidenav-close link_definicoes' href="#!"><i class="material-icons">build</i>Definições do Grupo</a></li>
-		<li><a class="waves-effect" href="#!"><i class="material-icons">power_settings_new</i>Sair</a></li>
-	</ul>
 	<!--end-navbar -->
 
 	<!--Telas -->
@@ -92,14 +51,12 @@
 				</div>
 			</div>
 			<div class="col s6 m4 l2 center">
-				<a href='signup.html'>
-				<div class="card light-blue darken-4 link_relatorio">
+				<div class="card light-blue darken-4 link_notificacao">
 					<div class="card-content white-text">
-						<span class="card-title">Mensagem</span>
+						<span class="card-title">Notificaçao</span>
 						<i class="material-icons large">speaker_notes</i>
 					</div>
-				</div>
-			</a>
+				</div>				
 			</div>
 		</div>
 	</div>

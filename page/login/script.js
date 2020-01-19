@@ -5,6 +5,9 @@ $(document).ready(function () {
 
 $('#auth').click(function(){
 
+  $('#GifLogin').fadeIn("1000");
+  $('#TelaLogin').fadeOut("1000");
+
   function userbd(){
     var auth = $( "body" ).data('auth');
     //alert(all[1]);
@@ -65,6 +68,10 @@ $('#auth').click(function(){
         userbd();
 
       }else{
+
+        $('#GifLogin').fadeOut("1000");
+        $('#TelaLogin').fadeIn("1000");
+
         M.toast({html: user.auth})
       }//end-ifOK
     });//end-each
