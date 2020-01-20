@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  console.log(1);
+
   $('.sidenav').sidenav();
   $.get( "../sidenav/index.html", function( data ) {
     $( ".ajaxsidenav" ).html( data );
@@ -25,7 +25,6 @@ $(document).ready(function () {
       if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
       else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
-      console.log(2);
 
 
       db.readTransaction(function(tx) {
@@ -37,31 +36,41 @@ $(document).ready(function () {
           $.each(obj1, function (index, va) {
             iduser[index] = va;
           });
-          console.log(3);
+
           var idUserGrupo = $("#t_dashboard").attr('grupo',iduser['idUser']);
+          console.log(idUserGrupo);
 
-          $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'view_grupo', iduser: idUserGrupo},
-          function (data) {
+          
+          var xhttp = new XMLHttpRequest();
+          var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php";
+          var valor = 'func=view_grupo&iduser=1';
+          var result;
+          xhttp.open("POST", url , true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            console.log(4);/*
-            $.each(data, function (index, groupUser) {
-              console.log(groupUser);
+          xhttp.onreadystatechange = function() {//Call a function when the state changes.
+            if(xhttp.readyState == 4 && xhttp.status == 200) {
+              result = xhttp.response;
+              $.each(result, function (index, groupUser) {
+                console.log(groupUser);
+                console.log(2);
+              });//end-each
+            }
+          }
+          xhttp.responseType = 'json';
+          xhttp.send(valor);
 
-            });//end-each
-            */
-          },"json");//end-get
 
+    }, function(tx, error) {
+      console.log('SELECT error: ' + error.message);
+    });
+  });
 
-        }, function(tx, error) {
-          console.log('SELECT error: ' + error.message);
-        });
-      });
+}
 
-    }
+};
 
-  };
-
-  app.initialize();
+app.initialize();
 
 
 });
