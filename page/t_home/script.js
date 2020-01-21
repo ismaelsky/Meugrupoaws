@@ -1,9 +1,31 @@
 $(document).ready(function () {
 
-  $('.sidenav').sidenav();
-  $.get( "../sidenav/index.html", function( data ) {
-    $( ".ajaxsidenav" ).html( data );
-  })
+  /*  $.get( "../sidenav/index.html", function( data ) {  $( ".ajaxsidenav" ).html( data );})*/
+
+
+  var xhttp_grupo = new XMLHttpRequest();
+  var url = "../sidenav/index.html";
+  xhttp_grupo.open("GET", url , true);
+  xhttp_grupo.onreadystatechange = function() {//Call a function when the state changes.
+    if(xhttp_grupo.readyState == 4 && xhttp_grupo.status == 200) {
+      document.querySelector(".ajaxsidenav").innerHTML = this.responseText;
+
+      function loadjscssfile(filename, filetype){
+        if (filetype=="js"){ //if filename is a external JavaScript file
+          var fileref=document.createElement('script')
+          fileref.setAttribute("type","text/javascript")
+          fileref.setAttribute("src", filename)
+        }
+        if (typeof fileref!="undefined")
+        document.getElementsByTagName("head")[0].appendChild(fileref)
+      }
+      loadjscssfile("../sidenav/script.js", "js");
+    }
+  }
+  xhttp_grupo.send();
+
+
+
 
   var app = {
     // Application Constructor
@@ -25,52 +47,18 @@ $(document).ready(function () {
       if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
       else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
+      //alert(v_dash);
 
 
-      db.readTransaction(function(tx) {
-        tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
-          var obj1 = resultSet.rows.item(0);
-          var objj = JSON.stringify(obj1);
-
-          var iduser = {};
-          $.each(obj1, function (index, va) {
-            iduser[index] = va;
-          });
-
-          var idUserGrupo = $("#t_dashboard").attr('grupo',iduser['idUser']);
-          console.log(idUserGrupo);
-
-          
-          var xhttp = new XMLHttpRequest();
-          var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php";
-          var valor = 'func=view_grupo&iduser=1';
-          var result;
-          xhttp.open("POST", url , true);
-          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-          xhttp.onreadystatechange = function() {//Call a function when the state changes.
-            if(xhttp.readyState == 4 && xhttp.status == 200) {
-              result = xhttp.response;
-              $.each(result, function (index, groupUser) {
-                console.log(groupUser);
-                console.log(2);
-              });//end-each
-            }
-          }
-          xhttp.responseType = 'json';
-          xhttp.send(valor);
 
 
-    }, function(tx, error) {
-      console.log('SELECT error: ' + error.message);
-    });
-  });
 
-}
 
-};
+    }
 
-app.initialize();
+  };
+
+  app.initialize();
 
 
 });
