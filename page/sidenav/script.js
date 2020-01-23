@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $('.sidenav').sidenav();
 });
-
+    
 var grupo = {
   // Application Constructor
   initialize: function() {
@@ -21,6 +21,7 @@ var grupo = {
 
     if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
     else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
+
 
 
     db.readTransaction(function(tx) {

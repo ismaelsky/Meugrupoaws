@@ -26,11 +26,7 @@ $('#auth').click(function(){
         if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
         else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
-        db.transaction(function(tx) {
-
-          /*var create_banco = "CREATE TABLE IF NOT EXISTS `tbUser` (`idUser`, `stgNome`, `stgUserName`, `stgEmail`, `stgTelefone`, `stgPass`, `intNivel`, `stgEndereco`, `Img`, `stgAfiliacao`, `stgCodAux`);";
-          tx.executeSql(create_banco);*/
-
+        db.transaction(function(tx) {      
           tx.executeSql("INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)", [auth[0],auth[1],auth[2],auth[3],auth[4],auth[5],auth[6],auth[7],auth[8],auth[9],auth[10]]);
         }, function(error) {
           alert('Transaction ERROR: ' + error.message);
@@ -58,7 +54,7 @@ $('#auth').click(function(){
   function (data) {
     $.each(data, function (index, user) {
       if(user.auth === 'ok'){
-        $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao]} );
+        $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao,user.stgGrupoHome]} );
 
         userbd();
 
