@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline'; connect-src *; img-src *; font-src *; ">
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline'; connect-src *; img-src *; font-src *; ">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
 	<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -61,18 +61,57 @@
 	</div>
 
 	<div id='CreateGrupo' class='hidde'>
-		<i class="large material-icons">group_add</i>
-	</div>
-	<!--end-Telas -->
+		<div class='row'>
+			<div class='col s3 	m4 l4'>
+			</div>
+			<div class='col s6 	m3 l2'>
+				<br />
+				<br />
+				<br />
+				<br />
+				<img class="responsive-img" src="../../img/teamwork.png">
+			</div>
+			<div class='col s12 m12 l12'>
+				<blockquote>
+					<h4><b>Crie seu grupo<b></h4>
+					</blockquote>
+
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12 m4">
+									<input id="g_name" type="text" class="validate">
+									<label for="g_name">Nome do grupo</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12 m4">
+									<input id="end_name" type="text" class="validate">
+									<label for="end_name">Endereço</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12 m4 ">
+									<input id="password" type="password" class="validate">
+									<label for="password">Senha Supervisor</label>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--end-Telas -->
 
 
-	<!--  Scripts  src="https://code.jquery.com/jquery-2.1.1.min.js -->
-	<script src="../../js/jquery-3.3.1.min.js"></script>
-	<script src="script.js"></script>
-	<script src="../../js/materialize.js"></script>
-	<script src="../../cordova.js"></script>
-	<script src="../../cordova_plugins.js"></script>
+		<!--  Scripts  src="https://code.jquery.com/jquery-2.1.1.min.js -->
+		<script src="../../js/jquery-3.3.1.min.js"></script>
+		<script src="script.js"></script>
+		<script src="../../js/materialize.js"></script>
+		<script src="../../cordova.js"></script>
+		<script src="../../cordova_plugins.js"></script>
 
-</body>
+	</body>
 
-</html>
+	</html>
