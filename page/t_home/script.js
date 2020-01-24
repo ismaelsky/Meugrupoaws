@@ -3,6 +3,45 @@ $(document).ready(function () {
   /*  $.get( "../sidenav/index.html", function( data ) {  $( ".ajaxsidenav" ).html( data );})*/
 
 
+
+
+  function btncriargrupo(){
+
+
+    var g_iduser = document.querySelector("#body").getAttribute['idUser'];
+    var g_name = document.querySelector("#g_name").value;
+    var g_end = document.querySelector("#g_end").value;
+    var g_pass = document.querySelector("#g_pass").value;
+
+    alert(g_iduser);
+
+
+    /*
+    var xhttp_grupo = new XMLHttpRequest();
+    var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php?func=create_group"+"&iduser="++"&stgnome"+g_name+"&stgend"+g_end+"&suppass"+g_pass;
+    xhttp_grupo.open("GET", url , true);
+    xhttp_grupo.onreadystatechange = function() {//Call a function when the state changes.
+      if(xhttp_grupo.readyState == 4 && xhttp_grupo.status == 200) {
+        document.querySelector(".ajaxsidenav").innerHTML = this.responseText;
+
+        function loadjscssfile(filename, filetype){
+          if (filetype=="js"){ //if filename is a external JavaScript file
+            var fileref=document.createElement('script')
+            fileref.setAttribute("type","text/javascript")
+            fileref.setAttribute("src", filename)
+          }
+          if (typeof fileref!="undefined")
+          document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadjscssfile("../sidenav/script.js", "js");
+      }
+    }
+    xhttp_grupo.send();*/
+
+  }
+
+    document.getElementById("btncriargrupo").addEventListener("click", btncriargrupo);
+
   var xhttp_grupo = new XMLHttpRequest();
   var url = "../sidenav/index.html";
   xhttp_grupo.open("GET", url , true);
@@ -55,15 +94,18 @@ $(document).ready(function () {
           $.each(obj1, function (index, va) {
             vuser[index] = va;
           });
+          document.querySelector("body").setAttribute('iduser',vuser['idUser']);
+          document.querySelector("body").setAttribute('stgNome',vuser['stgNome']);
 
           if(vuser['stgGrupoHome'] == null){
             var creatGrupo = document.getElementById('CreateGrupo');
             creatGrupo.style.display = 'block';
 
           }else{
+
             var dasHome = document.getElementById('t_dashboard');
             dasHome.style.display = 'block';
-          
+
           }
           /*
           var xhttp_grupo = new XMLHttpRequest();
