@@ -32,6 +32,13 @@ var sidenav = {
 
 
     db.readTransaction(function(tx) {
+
+
+
+
+
+
+
       tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
         var obj1 = resultSet.rows.item(0);
         var objj = JSON.stringify(obj1);
@@ -70,45 +77,60 @@ var sidenav = {
         xhttp_grupo.send(valor);
 
 
-  }, function(tx, error) {
-    console.log('SELECT error: ' + error.message);
-  });
+      }, function(tx, error) {
+        console.log('SELECT error: ' + error.message);
+      });
 
-  tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
-    var obj1 = resultSet.rows.item(0);
-    var objj = JSON.stringify(obj1);
 
-    var vuser = {};
-    $.each(obj1, function (index, va) {
-      vuser[index] = va;
+
+
+
+
+
+      tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
+        var obj1 = resultSet.rows.item(0);
+        var objj = JSON.stringify(obj1);
+
+        var vuser = {};
+        $.each(obj1, function (index, va) {
+          vuser[index] = va;
+        });
+        document.querySelector("body").setAttribute('iduser',vuser['idUser']);
+        document.querySelector("body").setAttribute('stgnomeuser',vuser['stgNome']);
+        document.querySelector("body").setAttribute('stgGrupoHome',vuser['stgGrupoHome']);
+
+        var stgnomeuser = document.getElementById("body").getAttribute('stgnomeuser');
+        document.getElementById('stgnomeuser').innerHTML = "LIDER: "+stgnomeuser;
+
+
+        if(vuser['stgGrupoHome'] == null){
+          var creatGrupo = document.getElementById('CreateGrupo');
+          creatGrupo.style.display = 'block';
+
+        }else{
+
+          var dasHome = document.getElementById('t_dashboard');
+          dasHome.style.display = 'block';
+
+        }
+
+
+      }, function(tx, error) {
+        console.log('SELECT error: ' + error.message);
+      });
+
+
+
+
+
+
+
+
+
+
     });
-    document.querySelector("body").setAttribute('iduser',vuser['idUser']);
-    document.querySelector("body").setAttribute('stgNome',vuser['stgNome']);
-    document.querySelector("body").setAttribute('stgGrupoHome',vuser['stgGrupoHome']);
 
-    if(vuser['stgGrupoHome'] == null){
-      var creatGrupo = document.getElementById('CreateGrupo');
-      creatGrupo.style.display = 'block';
-
-    }else{
-
-      var dasHome = document.getElementById('t_dashboard');
-      dasHome.style.display = 'block';
-
-    }
-
-
-  }, function(tx, error) {
-    console.log('SELECT error: ' + error.message);
-  });
-
-
-
-
-
-});
-
-}
+  }
 
 };
 

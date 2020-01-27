@@ -61,19 +61,21 @@ var app = {
     function btncriargrupo(){
 
       var g_iduser = document.getElementById("body").getAttribute('iduser');
+      var g_stgnomeuser = document.getElementById("body").getAttribute('stgnomeuser');
       var g_name = document.querySelector("#g_name").value;
       var g_end = document.querySelector("#g_end").value;
-      var g_pass = document.querySelector("#g_pass").value;
+
+      alert(g_stgnomeuser);
 
       var xhttp_grupo = new XMLHttpRequest();
-      var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php?func=create_group&iduser="+g_iduser+"&stgnome="+g_name+"&stgend="+g_end;
+      var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php?func=create_group&iduser="+g_iduser+"&stgnome="+g_name+"&stgend="+g_end+"&stgnomeuser="+g_stgnomeuser;
       xhttp_grupo.open("GET", url , true);
       xhttp_grupo.onreadystatechange = function() {//Call a function when the state changes.
         if(xhttp_grupo.readyState == 4 && xhttp_grupo.status == 200) {
           //document.querySelector(".ajaxsidenav").innerHTML = this.responseText;
           alert(this.responseText);
           window.location.replace("../t_home/index.html");
-          
+
         }
       }
       xhttp_grupo.send();
