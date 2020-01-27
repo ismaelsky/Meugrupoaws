@@ -4,13 +4,12 @@ function onOffline() {
   window.location.replace("../no_connection/index.html");
 }
 
-
 $(document).ready(function () {
   $('.sidenav').sidenav();
 });
 
 
-var grupo = {
+var sidenav = {
   // Application Constructor
   initialize: function() {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -74,13 +73,46 @@ var grupo = {
   }, function(tx, error) {
     console.log('SELECT error: ' + error.message);
   });
+
+  tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
+    var obj1 = resultSet.rows.item(0);
+    var objj = JSON.stringify(obj1);
+
+    var vuser = {};
+    $.each(obj1, function (index, va) {
+      vuser[index] = va;
+    });
+    document.querySelector("body").setAttribute('iduser',vuser['idUser']);
+    document.querySelector("body").setAttribute('stgNome',vuser['stgNome']);
+    document.querySelector("body").setAttribute('stgGrupoHome',vuser['stgGrupoHome']);
+
+    if(vuser['stgGrupoHome'] == null){
+      var creatGrupo = document.getElementById('CreateGrupo');
+      creatGrupo.style.display = 'block';
+
+    }else{
+
+      var dasHome = document.getElementById('t_dashboard');
+      dasHome.style.display = 'block';
+
+    }
+
+
+  }, function(tx, error) {
+    console.log('SELECT error: ' + error.message);
+  });
+
+
+
+
+
 });
 
 }
 
 };
 
-grupo.initialize();
+sidenav.initialize();
 
 
 //navegar entre telas
