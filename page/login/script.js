@@ -1,3 +1,10 @@
+
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+  window.location.replace("../no_connection/index.html");
+}
+
 $('#auth').click(function(){
 
   $('#GifLogin').fadeIn("1000");
@@ -26,7 +33,7 @@ $('#auth').click(function(){
         if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
         else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
-        db.transaction(function(tx) {      
+        db.transaction(function(tx) {
           tx.executeSql("INSERT INTO tbUser VALUES (?,?,?,?,?,?,?,?,?,?,?)", [auth[0],auth[1],auth[2],auth[3],auth[4],auth[5],auth[6],auth[7],auth[8],auth[9],auth[10]]);
         }, function(error) {
           alert('Transaction ERROR: ' + error.message);

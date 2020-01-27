@@ -63,3 +63,16 @@
   left: 0px;
   width: 100%;
 }
+
+.alertconnect{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,7 +1,15 @@
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+  window.location.replace("../no_connection/index.html");
+}
+
+
 $(document).ready(function () {
   $('.sidenav').sidenav();
 });
-    
+
+
 var grupo = {
   // Application Constructor
   initialize: function() {
