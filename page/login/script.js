@@ -57,8 +57,7 @@ $('#auth').click(function(){
   var login = $('#l_login').val();
   var pass = $('#l_pass').val();
 
-  $.get("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'auth', login: login, pass: pass},
-  function (data) {
+  $.post("http://isdeveloper.com.br/meugrupo/back-end/index.php", { func: 'auth', login: login, pass: pass}, function (data) {
     $.each(data, function (index, user) {
       if(user.auth === 'ok'){
         $( "body" ).data( { auth: [ user.idUser,user.stgNome,user.stgUserName,user.stgEmail,user.stgTelefone,user.stgPass,user.intNivel,user.stgEndereco,user.Img,user.stgAfiliacao,user.stgGrupoHome]} );

@@ -3,8 +3,6 @@ $(document).ready(function () {
   /*  $.get( "../sidenav/index.html", function( data ) {  $( ".ajaxsidenav" ).html( data );})*/
 });
 
-
-
 var xhttp_grupo = new XMLHttpRequest();
 var url = "../sidenav/index.html";
 xhttp_grupo.open("GET", url , true);
@@ -61,14 +59,14 @@ var app = {
     function btncriargrupo(){
 
       var g_iduser = document.getElementById("body").getAttribute('iduser');
-      var g_stgnomeuser = document.getElementById("body").getAttribute('stgnomeuser');
+      var g_stguser = document.getElementById("body").getAttribute('stguser');
       var g_name = document.querySelector("#g_name").value;
       var g_end = document.querySelector("#g_end").value;
 
-      alert(g_stgnomeuser);
+      alert(g_stguser);
 
       var xhttp_grupo = new XMLHttpRequest();
-      var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php?func=create_group&iduser="+g_iduser+"&stgnome="+g_name+"&stgend="+g_end+"&stgnomeuser="+g_stgnomeuser;
+      var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php?func=create_group&iduser="+g_iduser+"&stgnome="+g_name+"&stgend="+g_end+"&stguser="+g_stguser;
       xhttp_grupo.open("GET", url , true);
       xhttp_grupo.onreadystatechange = function() {//Call a function when the state changes.
         if(xhttp_grupo.readyState == 4 && xhttp_grupo.status == 200) {

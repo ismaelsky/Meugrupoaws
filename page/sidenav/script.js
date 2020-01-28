@@ -26,12 +26,75 @@ var sidenav = {
   // Update DOM on a Received Event
   receivedEvent: function(id) {
 
+
+
+
+
+
+
+
+
+
     if (window.cordova.platformId === "browser") db = window.openDatabase('MeuGrupoSqLite', '1.0', 'Data', 2*1024*1024);
     else db = window.sqlitePlugin.openDatabase({name: 'MeuGrupoSqLite.db', location: 'default'});
 
 
 
     db.readTransaction(function(tx) {
+
+
+      tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
+        var obj1 = resultSet.rows.item(0);
+        var objj = JSON.stringify(obj1);
+
+        var iduser = {};
+        $.each(obj1, function (index, va) {
+          iduser[index] = va;
+        });
+
+        var xhttp_grupo = new XMLHttpRequest();
+        var url = "http://isdeveloper.com.br/meugrupo/back-end/index.php";
+        var valor = 'func=auth&iduser='+iduser['idUser']+"&login="+iduser['stgUserName']+"&pass="+iduser['stgPass'];
+        var result;
+        xhttp_grupo.open("POST", url , true);
+        xhttp_grupo.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp_grupo.onreadystatechange = function() {//Call a function when the state changes.
+          if(xhttp_grupo.readyState == 4 && xhttp_grupo.status == 200) {
+            result = xhttp_grupo.response;
+            var auth = {};
+
+            $.each(result, function (index, xuser) {
+              auth = [xuser.idUser,xuser.stgNome,xuser.stgUserName,xuser.stgEmail,xuser.stgTelefone,xuser.stgPass,xuser.intNivel,xuser.stgEndereco,xuser.Img,xuser.stgAfiliacao,xuser.stgGrupoHome];
+            });//end-each
+
+
+
+            db.transaction(function(tx) {
+
+              tx.executeSql('update notes set stgNome=? , stgUserName=? , stgEmail=? , stgTelefone = ? , stgPass= ? , intNivel= ? , stgEndereco = ? ,Img=? , stgAfiliacao=? ,stgGrupoHome=? where id=?', [auth[1],auth[2],auth[3],auth[4],auth[5],auth[6],auth[7],auth[8],auth[9],auth[10],auth[0]]);
+
+            }, function(error) {
+              alert('up: Transaction ERROR: ' + error.message);
+            }, function() {
+             //  window.location.replace("../../index.html");
+            });
+
+
+
+
+          }
+        }
+        xhttp_grupo.responseType = 'json';
+        xhttp_grupo.send(valor);
+
+
+      }, function(tx, error) {
+        console.log('SELECT error: ' + error.message);
+      });
+
+
+
 
 
 
@@ -86,7 +149,6 @@ var sidenav = {
 
 
 
-
       tx.executeSql("SELECT * FROM tbUser", [], function(tx, resultSet) {
         var obj1 = resultSet.rows.item(0);
         var objj = JSON.stringify(obj1);
@@ -96,7 +158,8 @@ var sidenav = {
           vuser[index] = va;
         });
         document.querySelector("body").setAttribute('iduser',vuser['idUser']);
-        document.querySelector("body").setAttribute('stgnomeuser',vuser['stgNome']);
+        document.querySelector("body").setAttribute('stgnome',vuser['stgNome']);
+        document.querySelector("body").setAttribute('stguser',vuser['stgUserName']);
         document.querySelector("body").setAttribute('stgGrupoHome',vuser['stgGrupoHome']);
 
         var stgnomeuser = document.getElementById("body").getAttribute('stgnomeuser');
@@ -106,12 +169,12 @@ var sidenav = {
         if(vuser['stgGrupoHome'] == null){
           var creatGrupo = document.getElementById('CreateGrupo');
           creatGrupo.style.display = 'block';
-
+        }else if (vuser['stgGrupoHome'] == "") {
+          var creatGrupo = document.getElementById('CreateGrupo');
+          creatGrupo.style.display = 'block';
         }else{
-
           var dasHome = document.getElementById('t_dashboard');
           dasHome.style.display = 'block';
-
         }
 
 
